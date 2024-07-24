@@ -19,6 +19,9 @@ class Circle(Shape):
         :param radius: Radius of the circle.
         """
 
+        if radius < 0:
+            raise ValueError('Radius cannot be negative')
+
         self.radius = radius
     
     def area(self) -> float:
@@ -40,6 +43,14 @@ class Triangle(Shape):
         :param side_b: Length of the second side.
         :param side_c: Length of the third side.
         """
+
+        if side_a < 0 or side_b < 0 or side_c < 0:
+            raise ValueError('Sides cannot be negative')
+        
+        if (side_a + side_b <= side_c or 
+            side_a + side_c <= side_b or 
+            side_b + side_c <= side_a):
+            raise ValueError('The provided sides do not form a valid triangle')
 
         self.side_a = side_a
         self.side_b = side_b
